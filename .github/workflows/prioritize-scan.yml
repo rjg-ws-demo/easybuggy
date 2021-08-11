@@ -1,4 +1,3 @@
-# replace .war with .jar or .ear if needed
 name: Whitesource Prioritize Java with Maven
 
 on:
@@ -42,6 +41,14 @@ jobs:
       run: |
         curl -LJO https://unified-agent.s3.amazonaws.com/wss-unified-agent.jar
         echo Unified Agent downloaded successfully
-        WARFILE=$(find ./ -type f -wholename "*/target/*.war")
-        java -jar wss-unified-agent.jar -appPath $WARFILE -d ./
+        # replace .war with .jar or .ear if needed
+        ARTIFACT=$(find ./ -type f -wholename "*/target/*.war")
+        java -jar wss-unified-agent.jar -appPath $ARTIFACT -d ./
+    - name: 'Upload WhiteSource folder'
+      uses: actions/upload-artifact@v2
+      with:
+        name: Whitesource
+        path: whitesource
+        retention-days: 1
+        
         
