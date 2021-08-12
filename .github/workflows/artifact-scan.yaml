@@ -2,9 +2,9 @@ name: Whitesource Prioritize Java with Maven
 
 on:
   push:
-    branches: [ master ]
+    branches: [ artifact-test ]
   pull_request:
-    branches: [ master ]
+    branches: [ artifact-test ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
